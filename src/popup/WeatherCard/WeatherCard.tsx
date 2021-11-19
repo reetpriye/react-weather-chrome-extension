@@ -7,7 +7,7 @@ import {
   CardActions,
   Typography
 } from '@material-ui/core'
-import { fetchOpenWeatherData } from '../../utils/api'
+import { fetchOpenWeatherData, OpenWeatherTempScale } from '../../utils/api'
 import { OpenWeatherData } from '../../utils/api'
 
 const WeatherCardContainer: React.FC<{
@@ -32,19 +32,20 @@ type WeatherCardState = 'loading' | 'error' | 'ready'
 
 const WeatherCard: React.FC<{
   city: string
+  tempScale: OpenWeatherTempScale
   onDelete?: () => void
-}> = ({ city, onDelete }) => {
+}> = ({ city, tempScale, onDelete }) => {
   const [weatherData, setWeatherData] = useState<OpenWeatherData | null>(null)
   const [cardState, setCardState] = useState<WeatherCardState>('loading')
 
   useEffect(() => {
-    fetchOpenWeatherData(city)
+    fetchOpenWeatherData(city, tempScale)
       .then(data => {
         setWeatherData(data)
         setCardState('ready')
       })
       .catch(() => setCardState('error'))
-  }, [city])
+  }, [city, tempScale])
 
   if (cardState == 'loading' || cardState == 'error') {
     return (
