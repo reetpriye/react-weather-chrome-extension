@@ -60,7 +60,7 @@ const App: React.FC<{}> = () => {
 
   return (
     <Box mx='8px' my='16px'>
-      <Grid container justify='space-evenly'>
+      <Grid container justifyContent='space-evenly'>
         <Grid item>
           <Paper>
             <Box px='15px' py='5px'>
@@ -85,6 +85,11 @@ const App: React.FC<{}> = () => {
           </Paper>
         </Grid>
       </Grid>
+
+      {options.homeCity !== '' && (
+        <WeatherCard city={options.homeCity} tempScale={options.tempScale} />
+      )}
+
       {cities.map((city, index) => (
         <WeatherCard
           city={city}
