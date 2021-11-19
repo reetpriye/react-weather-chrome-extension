@@ -14,6 +14,8 @@
         "default_icon": "icon.png"
     },
     "permissions": [
+        "alarms",
+        "contextMenus",
         "storage"
     ],
     "options_page": "options.html",
