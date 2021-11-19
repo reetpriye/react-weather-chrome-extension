@@ -1,12 +1,23 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { render } from 'react-dom'
+import WeatherCard from './WeatherCard'
+
+import 'fontsource-roboto'
 
 import './popup.css'
 
 const App: React.FC<{}> = () => {
+  const [cities, setCities] = useState<string[]>([
+    'Toronto',
+    'New York',
+    'Error'
+  ])
+
   return (
     <div>
-      <img src='icon.png' alt='icon' />
+      {cities.map((city, index) => (
+        <WeatherCard city={city} key={index} />
+      ))}
     </div>
   )
 }
